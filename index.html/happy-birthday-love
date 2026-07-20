@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise! ❤️</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            overflow: hidden;
+            padding: 20px;
+        }
+        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .page {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(251, 111, 146, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            z-index: 2;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .page.active { display: block; }
+        h1 { color: #ff477e; font-size: 2rem; margin-bottom: 20px; }
+        p { color: #4f5d75; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
+        .btn {
+            background: linear-gradient(45deg, #ff477e, #ff7096);
+            color: white; border: none; padding: 14px 32px;
+            font-size: 1.1rem; font-weight: 600; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(255, 71, 126, 0.3);
+            margin: 10px;
+        }
+        .image-frame { width: 100%; height: 250px; border-radius: 15px; background: #eee; margin-bottom: 20px; overflow: hidden; border: 4px solid white; }
+        .image-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .gif-container { width: 100%; max-width: 250px; margin: 0 auto 20px; }
+        .gif-container img { width: 100%; border-radius: 15px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- PAGE 1 -->
+    <div class="page active" id="page1">
+        <h1>Happy Birthday, My Love! ❤️</h1>
+        <p>Tumhare liye ek chota sa surprise ready hai. Kya tum dekhne ke liye ready ho?</p>
+        <button class="btn" onclick="showPage('page2')">Main Ready Hu! 👉</button>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="page2">
+        <h1>Are you ready to see your gift? 🎁</h1>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <button class="btn" onclick="showPage('page3')">Yes! 😍</button>
+            <button class="btn" style="background: #6c757d;" onclick="showPage('page_crying')">No 😢</button>
+        </div>
+    </div>
+
+    <!-- PAGE CRYING (The "No" consequence) -->
+    <div class="page" id="page_crying">
+        <h1>Please na... 🥺</h1>
+        <div class="gif-container">
+            <!-- Cute crying gif -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3emN5cWthMnd3MTM5YjY3ZTR2ZDRrYnp1OTc4Mms0bXF4eHRkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lQ78eI0b5220c4v8N2/giphy.gif" alt="Crying">
+        </div>
+        <p>Itna toh banta hai mere liye, please maan jao na? 🥺</p>
+        <button class="btn" onclick="showPage('page3')">Theek hai, Yes! ❤️</button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="page3">
+        <div class="image-frame">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" alt="Birthday Image">
+        </div>
+        <h1>You are my best gift! 🧸</h1>
+        <p>Tumhari smile hi meri duniya hai. Thank you meri life me aane ke liye!</p>
+        <button class="btn" onclick="showPage('page4')">Next 💝</button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="page4">
+        <h1>Sending lots of Love! 💋</h1>
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Qzd3pqb3BxdTZ2amF6ZnJ3dTBqdXgzOHh6OHlxNmZ0MnV6MXh4YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Ww3QyfKHAf6JeaOWwV/giphy.gif" alt="Kiss">
+        </div>
+        <div class="gif-container" style="display: flex; gap: 5px;">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHBwbGs2ZGNqYnk1NnUwaWRmb20xajN6OHZ2ZDVyd3Vha3l0ajQ2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lQ78eI0b5220c4v8N2/giphy.gif" alt="Hug">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3emN5cWthMnd3MTM5YjY3ZTR2ZDRrYnp1OTc4Mms0bXF4eHRkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Vf98sS721Yw72pX8xW/giphy.gif" alt="Hug">
+        </div>
+        <button class="btn" onclick="showPage('page5')">Last Step 🥺</button>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page" id="page5">
+        <h1>I Love You So Much! 💖</h1>
+        <p>Mere paas shabd kam hain, par tumse pyaar bahut hai. Hamesha khush raho aur meri life ko aise hi roshan karte raho. Happy Birthday Once Again!</p>
+        <button class="btn" onclick="alert('I Love You Infinite! ❤️✨')">Click For Surprise! 💌</button>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            // Trigger confetti on important pages
+            if(pageId === 'page3' || pageId === 'page5') burstConfetti();
+        }
+
+        // Confetti logic
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const colors = ['#ff477e', '#ff7096', '#f72585', '#7209b7'];
+        let confettiPieces = [];
+
+        function burstConfetti() {
+            for(let i=0; i<100; i++) {
+                confettiPieces.push({
+                    x: Math.random()*width, y: Math.random()*height,
+                    size: Math.random()*10+5, color: colors[Math.floor(Math.random()*colors.length)],
+                    vx: (Math.random()-0.5)*10, vy: (Math.random()-0.5)*10
+                });
+            }
+        }
+        function animate() {
+            ctx.clearRect(0,0,width,height);
+            confettiPieces.forEach((p, i) => {
+                p.x += p.vx; p.y += p.vy;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+                if(p.y > height) confettiPieces.splice(i,1);
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
+
